@@ -18,8 +18,8 @@ function toggleDarkMode() {
 // +-*/のテストデータ生成範囲を返却
 function getNumRange(grade) {
   switch(grade) {
-    case 1: return [[ 9, 1],   [[10, 5] ,[ 5, 1]],  [9,1],  [[ 9, 1], [ 3, 1]]];
-    case 2: return [[14, 2],   [[20,11], [10, 1]],  [9,1],  [[19, 1], [ 3, 1]]];
+    case 1: return [[ 9, 1],   [[10, 5] ,[ 5, 1]],  [9,1],  [[ 9, 1], [ 5, 1]]];
+    case 2: return [[14, 2],   [[20,11], [10, 1]],  [9,1],  [[19, 1], [ 5, 1]]];
     case 3: return [[19, 4],   [[26,16], [15, 6]],  [9,1],  [[99,10], [ 9, 1]]];
     case 4: return [[24, 8],   [[99,50], [50,11]],  [9,1],  [[99,20], [19,11]]];
     default:return [[49,11],   [[99,50], [50,11]],  [9,1],  [[99,20], [19,11]]];
@@ -175,22 +175,23 @@ function initTableHeader() {
     var [to, from] = getNumRange(grade)[type][0];
     var range = Array.from(new Array(to-from+1)).map((v,i) => i+from);
     var arr = shuffle(range);
-    arr = arr.concat(arr).concat(arr);
+    arr = arr.concat(shuffle(range));
     for (var i=1; i<=10; i++) {
       ths[i].innerText = arr[i];
     }
     var [to, from] = getNumRange(grade)[type][1];
     range = Array.from(new Array(to-from+1)).map((v,i) => i+from);
+    console.log(range);
     arr = shuffle(range);
-    arr = arr.concat(arr).concat(arr);
+    arr = arr.concat(shuffle(range));
     for (var i=11; i<=20; i++) {
-      ths[i].innerText = arr[i];
+      ths[i].innerText = arr[i-11];
     }
   } else {
     var [to, from] = getNumRange(grade)[type];
     var range = Array.from(new Array(to-from+1)).map((v,i) => i+from);
     var arr = shuffle(range);
-    arr = arr.concat(arr).concat(arr);
+    arr = arr.concat(shuffle(range)).concat(shuffle(range));
     for (var i=1; i<=20; i++) {
       ths[i].innerText = arr[i];
     }
