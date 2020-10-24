@@ -174,16 +174,15 @@ function initTableHeader() {
   if (type == 1 || type == 3) {
     var [to, from] = getNumRange(grade)[type][0];
     var range = Array.from(new Array(to-from+1)).map((v,i) => i+from);
-    var arr = shuffle(range);
-    arr = arr.concat(shuffle(range));
+    var arr = shuffle(range.silce());
+    arr = arr.concat(shuffle(range.slice()));
     for (var i=1; i<=10; i++) {
       ths[i].innerText = arr[i];
     }
     var [to, from] = getNumRange(grade)[type][1];
     range = Array.from(new Array(to-from+1)).map((v,i) => i+from);
-    console.log(range);
-    arr = shuffle(range);
-    arr = arr.concat(shuffle(range));
+    arr = shuffle(range.slice());
+    arr = arr.concat(shuffle(range.slice()));
     for (var i=11; i<=20; i++) {
       ths[i].innerText = arr[i-11];
     }
@@ -191,7 +190,7 @@ function initTableHeader() {
     var [to, from] = getNumRange(grade)[type];
     var range = Array.from(new Array(to-from+1)).map((v,i) => i+from);
     var arr = shuffle(range);
-    arr = arr.concat(shuffle(range)).concat(shuffle(range));
+    arr = arr.concat(shuffle(range.slice())).concat(shuffle(range.slice()));
     for (var i=1; i<=20; i++) {
       ths[i].innerText = arr[i];
     }
