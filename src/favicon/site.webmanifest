@@ -1,14 +1,14 @@
 {
-    "name": "\u30bf\u30a4\u30d7100\u30de\u30b9\u8a08\u7b97",
-    "short_name": "\u30bf\u30a4\u30d7100\u30de\u30b9\u8a08\u7b97",
+    "name": "タイプ100マス計算",
+    "short_name": "タイプ100マス計算",
     "icons": [
         {
-            "src": "/favicon/android-chrome-192x192.png",
+            "src": "/type-100masu/favicon/android-chrome-192x192.png",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "/favicon/android-chrome-512x512.png",
+            "src": "/type-100masu/favicon/android-chrome-512x512.png",
             "sizes": "512x512",
             "type": "image/png"
         }
