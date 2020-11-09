@@ -174,7 +174,7 @@ function initTableHeader() {
   if (type == 1 || type == 3) {
     var [to, from] = getNumRange(grade)[type][0];
     var range = Array.from(new Array(to-from+1)).map((v,i) => i+from);
-    var arr = shuffle(range.silce());
+    var arr = shuffle(range.slice());
     arr = arr.concat(shuffle(range.slice()));
     for (var i=1; i<=10; i++) {
       ths[i].innerText = arr[i];
