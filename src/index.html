@@ -71,37 +71,39 @@
     </style>
   </head>
   <body>
-    <nav id="header" class="navbar navbar-expand pb-0">
-      <div class="container flex-wrap">
-        <a class="navbar-brand" href="/type-100masu/">
-          タイプ100マス<ruby>計算<rp>(</rp><rt>けいさん</rt><rp>)</rp></ruby>
-        </a>
-        <div class="navbar-nav align-items-center">
-          <button onclick="countdown()" type="button" class="btn btn-primary">スタート</button>
-          <select id="type" class="ml-1 form-control form-control-sm w-auto">
-            <option>＋</option>
-            <option>ー</option>
-            <option>×</option>
-            <option>÷</option>
-          </select>
-          <select id="grade" class="ml-1 form-control form-control-sm w-auto">
-            <option>小1</option>
-            <option selected>小2</option>
-            <option>小3</option>
-            <option>小4</option>
-            <option>小5〜</option>
-          </select>
-          <button title="ダークモード切替" onclick="toggleDarkMode()" class="ml-2 close">🌓</button>
+    <header id="header">
+      <nav class="navbar navbar-expand pb-0">
+        <div class="container flex-wrap">
+          <a class="navbar-brand" href="/type-100masu/">
+            タイプ100マス<ruby>計算<rp>(</rp><rt>けいさん</rt><rp>)</rp></ruby>
+          </a>
+          <div class="navbar-nav align-items-center">
+            <button onclick="countdown()" type="button" class="btn btn-primary">スタート</button>
+            <select id="type" class="ml-1 form-control form-control-sm w-auto" aria-label="コース">
+              <option>＋</option>
+              <option>ー</option>
+              <option>×</option>
+              <option>÷</option>
+            </select>
+            <select id="grade" class="ml-1 form-control form-control-sm w-auto" aria-label="学年">
+              <option>小1</option>
+              <option selected>小2</option>
+              <option>小3</option>
+              <option>小4</option>
+              <option>小5〜</option>
+            </select>
+            <button title="ダークモード切替" onclick="toggleDarkMode()" class="ml-2 close">🌓</button>
+          </div>
         </div>
-      </div>
-    </nav>
-    <div class="container mx-md-auto pt-3 pb-4">
+      </nav>
+    </header>
+    <main class="container mx-md-auto pt-3 pb-4">
       <div id="gameStart" class="text-center d-none">
         <div id="countdown">
           <div id="counter">3</div>
           <pre class="aa">
 　 　 　 　 　 　 ,ｲ
-　　　　　　 　 / |　
+　　　　　　 　 / |
 　 　 　 ,r‐､λノ　 ﾞi､_,､ﾉゝ
 　　　　ﾞl　　 　 　　 　 　 ﾞ､_　　　パワー
 　　　 .j´　.　彡⌒ミ　　　（.　　　充電中...
@@ -197,7 +199,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </main>
     <footer class="pt-4 alert text-center">
       <div>
         <a class="px-1" href="/">Home</a>
