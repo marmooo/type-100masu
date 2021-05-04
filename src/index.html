@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ja" class="bg-white">
+<html lang="ja">
   <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-142997649-1"></script>
@@ -65,7 +65,8 @@
         #br { display:flex; flex-direction:column-reverse; padding-left:.25rem; }
         #br button { margin-bottom:.25rem; }
       }
-      html[data-theme="dark"] { filter: invert(1) hue-rotate(180deg) brightness(1.5); }
+      html[data-theme="dark"] { filter: invert(1) hue-rotate(180deg); }
+      @-moz-document url-prefix() { html[data-theme="dark"] { background-color:black; } }
     </style>
   </head>
   <body>
