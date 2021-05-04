@@ -1,4 +1,4 @@
-var CACHE_NAME = '2020-11-23 11:40';
+var CACHE_NAME = '2021-05-04 08:35';
 var urlsToCache = [
   '/type-100masu/',
   '/type-100masu/index.js',
@@ -6,7 +6,7 @@ var urlsToCache = [
   '/tegaki-100masu/mp3/end.mp3',
   '/tegaki-100masu/mp3/correct3.mp3',
   'https://marmooo.github.io/fonts/textar-light.woff2',
-  'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css',
+  'https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css',
 ];
 
 self.addEventListener('install', function(event) {
