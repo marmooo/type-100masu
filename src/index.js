@@ -142,7 +142,7 @@ function initTable() {
 }
 
 function initTableAnswers() {
-  var type = document.getElementById('type').selectedIndex;
+  var course = document.getElementById('courseOption').selectedIndex;
   var trs = document.getElementById('table').getElementsByTagName('tr');
   var ths = trs[0].children;
   for (var i=1; i<trs.length; i++) {
@@ -151,11 +151,11 @@ function initTableAnswers() {
       var answer;
       var a = parseInt(ths[j].innerText);
       var b = parseInt(tds[0].innerText);
-      if (type == 0) {
+      if (course == 0) {
         answer = a + b;
-      } else if (type == 1) {
+      } else if (course == 1) {
         answer = a - b;
-      } else if (type == 2) {
+      } else if (course == 2) {
         answer = a * b;
       } else {
         answer = Math.floor(a / b);
@@ -169,17 +169,17 @@ function initTableAnswers() {
 function initTableHeader() {
   var table = document.getElementById('table');
   var ths = table.getElementsByTagName('th');
-  var grade = document.getElementById('grade').selectedIndex + 1;
-  var type = document.getElementById('type').selectedIndex;
-  if (type == 1 || type == 3) {
-    var [to, from] = getNumRange(grade)[type][0];
+  var grade = document.getElementById('gradeOption').selectedIndex + 1;
+  var course = document.getElementById('courseOption').selectedIndex;
+  if (course == 1 || course == 3) {
+    var [to, from] = getNumRange(grade)[course][0];
     var range = Array.from(new Array(to-from+1)).map((v,i) => i+from);
     var arr = shuffle(range.slice());
     arr = arr.concat(shuffle(range.slice()));
     for (var i=1; i<=10; i++) {
       ths[i].innerText = arr[i];
     }
-    var [to, from] = getNumRange(grade)[type][1];
+    var [to, from] = getNumRange(grade)[course][1];
     range = Array.from(new Array(to-from+1)).map((v,i) => i+from);
     arr = shuffle(range.slice());
     arr = arr.concat(shuffle(range.slice()));
@@ -187,7 +187,7 @@ function initTableHeader() {
       ths[i].innerText = arr[i-11];
     }
   } else {
-    var [to, from] = getNumRange(grade)[type];
+    var [to, from] = getNumRange(grade)[course];
     var range = Array.from(new Array(to-from+1)).map((v,i) => i+from);
     var arr = shuffle(range);
     arr = arr.concat(shuffle(range.slice())).concat(shuffle(range.slice()));
@@ -232,12 +232,12 @@ function moveCursor(obj) {
     moveCursor(this);
   }
 });
-document.getElementById('type').onchange = function() {
+document.getElementById('courseOption').onchange = function() {
   var text = this.options[this.selectedIndex].innerText;
-  document.getElementById('typeText').innerHTML = text;
+  document.getElementById('courseText').innerHTML = text;
   initTable();
 }
-document.getElementById('grade').onchange = function() {
+document.getElementById('gradeOption').onchange = function() {
   initTable();
 }
 initTable();

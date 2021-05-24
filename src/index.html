@@ -29,7 +29,7 @@
     <meta name="application-name" content="タイプ100マス計算">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" >
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
     <style>
       .tile { width:84px; padding-bottom:1rem; line-height:1.1rem; }
       @font-face {
@@ -78,20 +78,20 @@
           </a>
           <div class="navbar-nav align-items-center">
             <button onclick="countdown()" type="button" class="btn btn-primary">スタート</button>
-            <select id="type" class="ml-1 form-control form-control-sm w-auto" aria-label="コース">
+            <select id="courseOption" class="form-select form-select-sm w-auto ms-1" aria-label="コース">
               <option>＋</option>
               <option>ー</option>
               <option>×</option>
               <option>÷</option>
             </select>
-            <select id="grade" class="ml-1 form-control form-control-sm w-auto" aria-label="学年">
+            <select id="gradeOption" class="form-select form-select-sm w-auto ms-1" aria-label="学年">
               <option>小1</option>
               <option selected>小2</option>
               <option>小3</option>
               <option>小4</option>
               <option>小5〜</option>
             </select>
-            <button title="ダークモード切替" onclick="toggleDarkMode()" class="ml-2 close">🌓</button>
+            <button title="ダークモード切替" onclick="toggleDarkMode()" class="fs-4 btn p-0 ms-1">🌓</button>
           </div>
         </div>
       </nav>
@@ -134,17 +134,19 @@
       <div id="playPanel" class="justify-content-center">
         <div id="masu">
           <table id="table" class="table table-striped table-bordered text-center">
-            <tr><th id="typeText">＋</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>0</th></tr>
-            <tr><th>1</th><td class="table-danger"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-            <tr><th>2</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-            <tr><th>3</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-            <tr><th>4</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-            <tr><th>5</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-            <tr><th>6</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-            <tr><th>7</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-            <tr><th>8</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-            <tr><th>9</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-            <tr><th>0</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tbody>
+              <tr><th id="courseText">＋</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>0</th></tr>
+              <tr><th>1</th><td class="table-danger"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+              <tr><th>2</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+              <tr><th>3</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+              <tr><th>4</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+              <tr><th>5</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+              <tr><th>6</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+              <tr><th>7</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+              <tr><th>8</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+              <tr><th>9</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+              <tr><th>0</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            </tbody>
           </table>
         </div>
         <div id="calc" class="px-4 justify-content-center">
