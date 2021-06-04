@@ -6,7 +6,7 @@ var urlsToCache = [
   '/tegaki-100masu/mp3/end.mp3',
   '/tegaki-100masu/mp3/correct3.mp3',
   'https://marmooo.github.io/fonts/textar-light.woff2',
-  'https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css',
+  'https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css',
 ];
 
 self.addEventListener('install', function(event) {
