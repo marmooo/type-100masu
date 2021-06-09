@@ -1,3 +1,9 @@
+let endAudio, incorrectAudio, correctAudio;
+loadAudios();
+const AudioContext = window.AudioContext || window.webkitAudioContext;
+const audioContext = new AudioContext();
+
+
 function loadConfig() {
   if (localStorage.getItem('darkMode') == 1) {
     document.documentElement.dataset.theme = 'dark';
@@ -13,6 +19,52 @@ function toggleDarkMode() {
     localStorage.setItem('darkMode', 1);
     document.documentElement.dataset.theme = 'dark';
   }
+}
+
+function playAudio(audioBuffer, volume) {
+  const audioSource = audioContext.createBufferSource();
+  audioSource.buffer = audioBuffer;
+  if (volume) {
+    const gainNode = audioContext.createGain();
+    gainNode.gain.value = volume;
+    gainNode.connect(audioContext.destination);
+    audioSource.connect(gainNode);
+    audioSource.start();
+  } else {
+    audioSource.connect(audioContext.destination);
+    audioSource.start();
+  }
+}
+
+function unlockAudio() {
+  audioContext.resume();
+}
+
+function loadAudio(url) {
+  return fetch(url)
+    .then(response => response.arrayBuffer())
+    .then(arrayBuffer => {
+      return new Promise((resolve, reject) => {
+        audioContext.decodeAudioData(arrayBuffer, (audioBuffer) => {
+          resolve(audioBuffer);
+        }, (err) => {
+          reject(err);
+        });
+      });
+    });
+}
+
+function loadAudios() {
+  promises = [
+    loadAudio('mp3/end.mp3'),
+    loadAudio('mp3/incorrect1.mp3'),
+    loadAudio('mp3/correct3.mp3'),
+  ];
+  Promise.all(promises).then(audioBuffers => {
+    endAudio = audioBuffers[0];
+    incorrectAudio = audioBuffers[1];
+    correctAudio = audioBuffers[2];
+  });
 }
 
 // +-*/のテストデータ生成範囲を返却
@@ -79,7 +131,7 @@ function initCalc() {
     var reply = replyObj.innerText;
     var answer = replyObj.dataset.answer;
     if (answer == reply) {
-      new Audio('mp3/correct3.mp3').play();
+      playAudio(correctAudio);
       replyObj.innerText = '';
       scoreObj.innerText = parseInt(scoreObj.innerText) + 1;
       moveCursorNext(replyObj);
@@ -91,7 +143,7 @@ function initCalc() {
         scoreObj.innerText = (Date.now() - startTime) / 1000;
       }
     } else {
-      new Audio('mp3/incorrect1.mp3').play();
+      playAudio(incorrectAudio);
     }
   }
   document.getElementById('bc').onclick = function() {
@@ -109,10 +161,11 @@ function initCalc() {
       replyObj.innerText = reply;
       var answer = replyObj.dataset.answer;
       if (answer == reply) {
-        new Audio('mp3/correct3.mp3').play();
+        playAudio(correctAudio);
         scoreObj.innerText = parseInt(scoreObj.innerText) + 1;
         moveCursorNext(replyObj);
         if (scoreObj.innerText == '100') {
+          playAudio(endAudio);
           clearInterval(gameTimer);
           playPanel.classList.add('d-none');
           scorePanel.classList.remove('d-none');
@@ -246,4 +299,5 @@ window.onresize = function() {
   initMasu();
 };
 initCalc();
+document.addEventListener('click', unlockAudio, { once:true, useCapture:true });
 
