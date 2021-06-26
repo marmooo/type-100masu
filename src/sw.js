@@ -1,10 +1,11 @@
-var CACHE_NAME = '2021-06-26 08:44';
+var CACHE_NAME = '2021-06-26 20:15';
 var urlsToCache = [
   '/type-100masu/',
   '/type-100masu/index.js',
-  '/tegaki-100masu/mp3/incorrect1.mp3',
-  '/tegaki-100masu/mp3/end.mp3',
-  '/tegaki-100masu/mp3/correct3.mp3',
+  '/type-100masu/mp3/incorrect1.mp3',
+  '/type-100masu/mp3/end.mp3',
+  '/type-100masu/mp3/correct3.mp3',
+  '/type-100masu/favicon/original.svg',
   'https://marmooo.github.io/fonts/textar-light.woff2',
   'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css',
 ];
