@@ -1,4 +1,4 @@
-var CACHE_NAME = '2021-06-26 20:15';
+var CACHE_NAME = '2021-08-09 00:08';
 var urlsToCache = [
   '/type-100masu/',
   '/type-100masu/index.js',
