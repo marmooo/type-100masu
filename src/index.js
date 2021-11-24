@@ -91,7 +91,7 @@ function startGameTimer() {
   const timeNode = document.getElementById("time");
   startTime = Date.now();
   gameTimer = setInterval(function () {
-    timeNode.innerText = (Date.now() - startTime) / 1000;
+    timeNode.textContent = (Date.now() - startTime) / 1000;
   }, 200);
 }
 
@@ -103,18 +103,18 @@ function countdown() {
   infoPanel.classList.add("d-none");
   scorePanel.classList.add("d-none");
   const counter = document.getElementById("counter");
-  counter.innerText = 3;
+  counter.textContent = 3;
   countdownTimer = setInterval(function () {
     const colors = ["skyblue", "greenyellow", "violet", "tomato"];
-    if (parseInt(counter.innerText) > 1) {
-      const t = parseInt(counter.innerText) - 1;
+    if (parseInt(counter.textContent) > 1) {
+      const t = parseInt(counter.textContent) - 1;
       counter.style.backgroundColor = colors[t];
-      counter.innerText = t;
+      counter.textContent = t;
     } else {
       clearTimeout(countdownTimer);
       gameStart.classList.add("d-none");
       infoPanel.classList.remove("d-none");
-      document.getElementById("score").innerText = 0;
+      document.getElementById("score").textContent = 0;
       startGameTimer();
     }
   }, 1000);
@@ -136,18 +136,18 @@ function initCalc() {
     const replyObj = document.getElementById("table").querySelector(
       ".table-danger",
     );
-    const reply = replyObj.innerText;
+    const reply = replyObj.textContent;
     const answer = replyObj.dataset.answer;
     if (answer == reply) {
       playAudio(correctAudio);
-      replyObj.innerText = "";
-      scoreObj.innerText = parseInt(scoreObj.innerText) + 1;
+      replyObj.textContent = "";
+      scoreObj.textContent = parseInt(scoreObj.textContent) + 1;
       moveCursorNext(replyObj);
-      if (scoreObj.innerText == "100") {
+      if (scoreObj.textContent == "100") {
         clearInterval(gameTimer);
         infoPanel.classList.add("d-none");
         scorePanel.classList.remove("d-none");
-        scoreObj.innerText = (Date.now() - startTime) / 1000;
+        scoreObj.textContent = (Date.now() - startTime) / 1000;
       }
     } else {
       playAudio(incorrectAudio);
@@ -157,30 +157,30 @@ function initCalc() {
     const replyObj = document.getElementById("table").querySelector(
       ".table-danger",
     );
-    replyObj.innerText = "";
+    replyObj.textContent = "";
   };
   for (let i = 0; i < 10; i++) {
     document.getElementById("b" + i).onclick = function () {
       const replyObj = document.getElementById("table").querySelector(
         ".table-danger",
       );
-      let reply = replyObj.innerText;
+      let reply = replyObj.textContent;
       reply += this.getAttribute("id").slice(-1);
       if (reply.length > 2) {
         reply = reply.slice(1, 3);
       }
-      replyObj.innerText = reply;
+      replyObj.textContent = reply;
       const answer = replyObj.dataset.answer;
       if (answer == reply) {
         playAudio(correctAudio);
-        scoreObj.innerText = parseInt(scoreObj.innerText) + 1;
+        scoreObj.textContent = parseInt(scoreObj.textContent) + 1;
         moveCursorNext(replyObj);
-        if (scoreObj.innerText == "100") {
+        if (scoreObj.textContent == "100") {
           playAudio(endAudio);
           clearInterval(gameTimer);
           infoPanel.classList.add("d-none");
           scorePanel.classList.remove("d-none");
-          scoreObj.innerText = (Date.now() - startTime) / 1000;
+          scoreObj.textContent = (Date.now() - startTime) / 1000;
         }
       }
     };
@@ -214,8 +214,8 @@ function initTableAnswers() {
     const tds = trs[i].children;
     for (let j = 1; j < tds.length; j++) {
       let answer;
-      const a = parseInt(ths[j].innerText);
-      const b = parseInt(tds[0].innerText);
+      const a = parseInt(ths[j].textContent);
+      const b = parseInt(tds[0].textContent);
       if (course == 0) {
         answer = a + b;
       } else if (course == 1) {
@@ -226,7 +226,7 @@ function initTableAnswers() {
         answer = Math.floor(a / b);
       }
       tds[j].dataset.answer = answer;
-      tds[j].innerText = "";
+      tds[j].textContent = "";
     }
   }
 }
@@ -242,14 +242,14 @@ function initTableHeader() {
     let arr = shuffle(range.slice());
     arr = arr.concat(shuffle(range.slice()));
     for (let i = 1; i <= 10; i++) {
-      ths[i].innerText = arr[i];
+      ths[i].textContent = arr[i];
     }
     [to, from] = getNumRange(grade)[course][1];
     range = Array.from(new Array(to - from + 1)).map((_v, i) => i + from);
     arr = shuffle(range.slice());
     arr = arr.concat(shuffle(range.slice()));
     for (let i = 11; i <= 20; i++) {
-      ths[i].innerText = arr[i - 11];
+      ths[i].textContent = arr[i - 11];
     }
   } else {
     const [to, from] = getNumRange(grade)[course];
@@ -257,7 +257,7 @@ function initTableHeader() {
     let arr = shuffle(range);
     arr = arr.concat(shuffle(range.slice())).concat(shuffle(range.slice()));
     for (let i = 1; i <= 20; i++) {
-      ths[i].innerText = arr[i];
+      ths[i].textContent = arr[i];
     }
   }
 }
@@ -308,7 +308,7 @@ document.getElementById("restartButton").onclick = countdown;
 document.getElementById("gradeOption").onchange = initTable;
 window.onresize = initMasu;
 document.getElementById("courseOption").onchange = function () {
-  const text = this.options[this.selectedIndex].innerText;
+  const text = this.options[this.selectedIndex].textContent;
   document.getElementById("courseText").innerHTML = text;
   initTable();
 };
