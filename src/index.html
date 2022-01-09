@@ -57,10 +57,10 @@
       .table { table-layout:fixed; }
       .table td, .table th { padding:0; vertical-align:middle; }
       #masu { width:60%; }
-      #calc { width:40%; }
+      #calc { width:40%; flex-direction:column; }
       @media (orientation: portrait) {
         #masu { width:100%; }
-        #calc { width:100%; display:flex; }
+        #calc { width:100%; flex-direction:row; }
         #br { display:flex; flex-direction:column-reverse; padding-left:.25rem; }
         #br button { margin-bottom:.25rem; }
       }
@@ -149,7 +149,7 @@
             </tbody>
           </table>
         </div>
-        <div id="calc" class="px-4 justify-content-center">
+        <div id="calc" class="px-4 d-flex justify-content-center">
           <div class="text-center">
             <div class="pb-1">
               <button id="b1" class="btn btn-secondary calc">1</button>
