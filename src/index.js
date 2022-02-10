@@ -175,12 +175,15 @@ function initCalc() {
         playAudio(correctAudio);
         scoreObj.textContent = parseInt(scoreObj.textContent) + 1;
         moveCursorNext(replyObj);
-        if (scoreObj.textContent == "100") {
+        const score = scoreObj.textContent;
+        if (score == "100") {
           playAudio(endAudio);
           clearInterval(gameTimer);
           infoPanel.classList.add("d-none");
           scorePanel.classList.remove("d-none");
           scoreObj.textContent = (Date.now() - startTime) / 1000;
+        } else if (score == "1") {
+          startGameTimer();
         }
       }
     };
