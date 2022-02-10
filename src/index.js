@@ -282,14 +282,6 @@ function moveCursorNext(obj) {
   newObj.className = "table-danger";
 }
 
-function moveCursor(obj) {
-  const prevObj = document.getElementById("table").querySelector(
-    "td.table-danger",
-  );
-  prevObj.className = "";
-  obj.className = "table-danger";
-}
-
 initTable();
 initMasu();
 initCalc();
@@ -297,14 +289,6 @@ initCalc();
 document.getElementById("toggleDarkMode").onclick = toggleDarkMode;
 document.getElementById("startButton").onclick = countdown;
 document.getElementById("restartButton").onclick = countdown;
-[...document.getElementsByTagName("td")].forEach((td) => {
-  td.onmousedown = function () {
-    moveCursor(this);
-  };
-  td.ontouchstart = function () {
-    moveCursor(this);
-  };
-});
 document.getElementById("gradeOption").onchange = initTable;
 window.onresize = initMasu;
 document.getElementById("courseOption").onchange = function () {
