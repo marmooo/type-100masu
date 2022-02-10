@@ -141,9 +141,10 @@ function initCalc() {
     if (answer == reply) {
       playAudio(correctAudio);
       replyObj.textContent = "";
-      scoreObj.textContent = parseInt(scoreObj.textContent) + 1;
+      const score = parseInt(scoreObj.textContent) + 1;
+      scoreObj.textContent = score;
       moveCursorNext(replyObj);
-      if (scoreObj.textContent == "100") {
+      if (score == 100) {
         clearInterval(gameTimer);
         infoPanel.classList.add("d-none");
         scorePanel.classList.remove("d-none");
@@ -173,16 +174,16 @@ function initCalc() {
       const answer = replyObj.dataset.answer;
       if (answer == reply) {
         playAudio(correctAudio);
-        scoreObj.textContent = parseInt(scoreObj.textContent) + 1;
+        const score = parseInt(scoreObj.textContent) + 1;
+        scoreObj.textContent = score;
         moveCursorNext(replyObj);
-        const score = scoreObj.textContent;
-        if (score == "100") {
+        if (score == 100) {
           playAudio(endAudio);
           clearInterval(gameTimer);
           infoPanel.classList.add("d-none");
           scorePanel.classList.remove("d-none");
           scoreObj.textContent = (Date.now() - startTime) / 1000;
-        } else if (score == "1") {
+        } else if (score == 1) {
           startGameTimer();
         }
       }
