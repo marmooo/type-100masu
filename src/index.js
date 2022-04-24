@@ -121,13 +121,8 @@ function countdown() {
 }
 
 function initMasu() {
-  let min = document.getElementById("masu").offsetWidth;
-  const headerHeight = document.getElementById("header").offsetHeight;
-  const height = window.innerHeight - headerHeight - 10;
-  if (height < min) {
-    min = height;
-  }
-  document.getElementById("masu").style.fontSize = min / 11 * 0.6 + "px";
+  const width = document.getElementById("table").offsetWidth;
+  document.getElementById("masu").style.fontSize = width / 11 * 0.6 + "px";
 }
 
 function initCalc() {
