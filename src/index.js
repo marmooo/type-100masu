@@ -120,9 +120,10 @@ function countdown() {
   }, 1000);
 }
 
-function initMasu() {
-  const width = document.getElementById("table").offsetWidth;
-  document.getElementById("masu").style.fontSize = width / 11 * 0.6 + "px";
+function initTableFontSize() {
+  const table = document.getElementById("table")
+  const width = table.offsetWidth;
+  table.style.fontSize = width / 11 * 0.6 + "px";
 }
 
 function initCalc() {
@@ -282,14 +283,14 @@ function moveCursorNext(obj) {
 }
 
 initTable();
-initMasu();
+initTableFontSize();
 initCalc();
 
 document.getElementById("toggleDarkMode").onclick = toggleDarkMode;
 document.getElementById("startButton").onclick = countdown;
 document.getElementById("restartButton").onclick = countdown;
 document.getElementById("gradeOption").onchange = initTable;
-window.onresize = initMasu;
+window.onresize = initTableFontSize;
 document.getElementById("courseOption").onchange = function () {
   const text = this.options[this.selectedIndex].textContent;
   document.getElementById("courseText").innerHTML = text;

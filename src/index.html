@@ -57,16 +57,19 @@
       @media (max-width: 768px) {
         .calc { font-size: 1.5rem; width:3rem; }
       }
-      .table { max-height:calc(100vh - 80px); table-layout:fixed; aspect-ratio:1/1; }
-      .table td, .table th { padding:0; vertical-align:middle; aspect-ratio:1/1; }
-      #masu { width:60%; }
-      #calc { width:40%; flex-direction:column; }
+      @media (orientation: landscape) {
+        #masuWrapper { max-width:calc(100% - 200px); max-height:calc(100vh - 80px); padding-right:1rem; }
+        #calc { flex-direction:column; }
+      }
       @media (orientation: portrait) {
-        #masu { width:100%; }
+        #masuWrapper { max-width:100%; max-height:calc(100vh - 299px); }
         #calc { width:100%; flex-direction:row; }
         #br { display:flex; flex-direction:column-reverse; padding-left:.25rem; }
         #br button { margin-bottom:.25rem; }
       }
+      #masu { max-width:100%; max-height:100%; aspect-ratio:1/1; }
+      #table { height:100%; table-layout:fixed; }
+      #table td, #table th { padding:0; }
       html[data-theme="dark"] { filter: invert(1) hue-rotate(180deg); }
       @-moz-document url-prefix() { html[data-theme="dark"] { background-color:black; } }
     </style>
@@ -138,24 +141,26 @@
         <button id="restartButton" type="button" class="btn btn-primary btn-lg m-1">リスタート</button>
       </div>
       <div id="infoPanel" class="d-flex flex-wrap justify-content-center">
-        <div id="masu">
-          <table id="table" class="table table-striped table-bordered text-center align-middle">
-            <tbody>
-              <tr><th id="courseText">＋</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>0</th></tr>
-              <tr><th>1</th><td class="table-danger"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-              <tr><th>2</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-              <tr><th>3</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-              <tr><th>4</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-              <tr><th>5</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-              <tr><th>6</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-              <tr><th>7</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-              <tr><th>8</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-              <tr><th>9</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-              <tr><th>0</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-            </tbody>
-          </table>
+        <div id="masuWrapper">
+          <div id="masu">
+            <table id="table" class="table table-striped table-bordered text-center align-middle">
+              <tbody>
+                <tr><th id="courseText">＋</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>0</th></tr>
+                <tr><th>1</th><td class="table-danger"></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><th>2</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><th>3</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><th>4</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><th>5</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><th>6</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><th>7</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><th>8</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><th>9</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><th>0</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-        <div id="calc" class="px-4 d-flex justify-content-center">
+        <div id="calc" class="d-flex justify-content-center">
           <div class="text-center">
             <div class="pb-1">
               <button id="b1" class="btn btn-secondary calc">1</button>
