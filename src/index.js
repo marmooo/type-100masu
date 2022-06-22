@@ -1,3 +1,4 @@
+const countPanel = document.getElementById("countPanel");
 const infoPanel = document.getElementById("infoPanel");
 const scorePanel = document.getElementById("scorePanel");
 let endAudio, incorrectAudio, correctAudio;
@@ -90,7 +91,7 @@ function startGameTimer() {
   clearInterval(gameTimer);
   const timeNode = document.getElementById("time");
   startTime = Date.now();
-  gameTimer = setInterval(function () {
+  gameTimer = setInterval(() => {
     timeNode.textContent = (Date.now() - startTime) / 1000;
   }, 200);
 }
@@ -99,12 +100,12 @@ let countdownTimer;
 function countdown() {
   initTable();
   clearTimeout(countdownTimer);
-  gameStart.classList.remove("d-none");
+  countPanel.classList.remove("d-none");
   infoPanel.classList.add("d-none");
   scorePanel.classList.add("d-none");
   const counter = document.getElementById("counter");
   counter.textContent = 3;
-  countdownTimer = setInterval(function () {
+  countdownTimer = setInterval(() => {
     const colors = ["skyblue", "greenyellow", "violet", "tomato"];
     if (parseInt(counter.textContent) > 1) {
       const t = parseInt(counter.textContent) - 1;
@@ -112,7 +113,7 @@ function countdown() {
       counter.textContent = t;
     } else {
       clearTimeout(countdownTimer);
-      gameStart.classList.add("d-none");
+      countPanel.classList.add("d-none");
       infoPanel.classList.remove("d-none");
       document.getElementById("score").textContent = 0;
       startGameTimer();
@@ -128,7 +129,7 @@ function initTableFontSize() {
 
 function initCalc() {
   const scoreObj = document.getElementById("score");
-  document.getElementById("be").onclick = function () {
+  document.getElementById("be").onclick = () => {
     const replyObj = document.getElementById("table").querySelector(
       ".table-danger",
     );
@@ -150,19 +151,19 @@ function initCalc() {
       playAudio(incorrectAudio);
     }
   };
-  document.getElementById("bc").onclick = function () {
+  document.getElementById("bc").onclick = () => {
     const replyObj = document.getElementById("table").querySelector(
       ".table-danger",
     );
     replyObj.textContent = "";
   };
   for (let i = 0; i < 10; i++) {
-    document.getElementById("b" + i).onclick = function () {
+    document.getElementById("b" + i).onclick = (event) => {
       const replyObj = document.getElementById("table").querySelector(
         ".table-danger",
       );
       let reply = replyObj.textContent;
-      reply += this.getAttribute("id").slice(-1);
+      reply += event.target.getAttribute("id").slice(-1);
       if (reply.length > 2) {
         reply = reply.slice(1, 3);
       }
@@ -291,8 +292,9 @@ document.getElementById("startButton").onclick = countdown;
 document.getElementById("restartButton").onclick = countdown;
 document.getElementById("gradeOption").onchange = initTable;
 window.onresize = initTableFontSize;
-document.getElementById("courseOption").onchange = function () {
-  const text = this.options[this.selectedIndex].textContent;
+document.getElementById("courseOption").onchange = (event) => {
+  const obj = event.target;
+  const text = obj.options[obj.selectedIndex].textContent;
   document.getElementById("courseText").innerHTML = text;
   initTable();
 };

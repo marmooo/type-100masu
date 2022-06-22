@@ -58,11 +58,11 @@
         .calc { font-size: 1.5rem; width:3rem; }
       }
       @media (orientation: landscape) {
-        #masu { max-width:calc(100% - 200px); max-height:calc(100vh - 80px); aspect-ratio:1/1; padding-right:1rem; }
+        #masu { max-width:calc(100% - 200px); max-height:calc(100vh - 84px); aspect-ratio:1/1; padding-right:1rem; }
         #calc { flex-direction:column; }
       }
       @media (orientation: portrait) {
-        #masu { width:100%; max-height:calc(100vh - 321px); aspect-ratio:1/1; }
+        #masu { max-width:100%; max-height:calc(100vh - 300px); aspect-ratio:1/1; }
         #calc { width:100%; flex-direction:row; }
         #br { display:flex; flex-direction:column-reverse; padding-left:.25rem; }
         #br button { margin-bottom:.25rem; }
@@ -79,15 +79,15 @@
         <div class="container flex-wrap">
           <a class="navbar-brand" href="/type-100masu/">
             <img src="/type-100masu/favicon/favicon.svg" width="32" height="32">
-            タイプ100マス<ruby>計算<rp>(</rp><rt>けいさん</rt><rp>)</rp></ruby>
+            タイプ100マス計算
           </a>
           <div class="navbar-nav align-items-center">
             <button id="startButton" type="button" class="btn btn-primary">スタート</button>
             <select id="courseOption" class="form-select form-select-sm w-auto ms-1" aria-label="コース">
-              <option>＋</option>
-              <option>ー</option>
-              <option>×</option>
-              <option>÷</option>
+              <option class="notranslate">＋</option>
+              <option class="notranslate">ー</option>
+              <option class="notranslate">×</option>
+              <option class="notranslate">÷</option>
             </select>
             <select id="gradeOption" class="form-select form-select-sm w-auto ms-1" aria-label="学年">
               <option>小1</option>
@@ -105,41 +105,7 @@
       <noscript>
         <div class="alert alert-warning">JavaScript を ON にしてください</div>
       </noscript>
-      <div id="gameStart" class="text-center d-none">
-        <div id="countdown">
-          <div id="counter">3</div>
-          <pre class="aa">
-　 　 　 　 　 　 ,ｲ
-　　　　　　 　 / |
-　 　 　 ,r‐､λノ　 ﾞi､_,､ﾉゝ
-　　　　ﾞl　　 　 　　 　 　 ﾞ､_　　　パワー
-　　　 .j´　.　彡⌒ミ　　　（.　　　充電中...
-　　　 {　 　(´・ω・｀)　　 /
-　　　　 ).　 c/　　 ,つ 　 ,l~
-　　　 ´y　　｛ ,、 ｛　 　 &lt;
-　　　　 ゝ 　 lﾉ ヽ,)　　 ,
-          </pre>
-        </div>
-      </div>
-      <div id="scorePanel" class="text-center pb-3 d-none">
-        <h3 class="pt-3">
-          <ruby>結果<rp>(</rp><rt>けっか</rt><rp>)</rp></ruby>
-        </h3>
-        <pre class="aa">　　　　　γ⌒ヽ
-　　　　__/　　/
-　γ￣＿_） （　 Λ,,Λ
-　（ 　 ＿__）　）(｀・ω・´)　クリアタイムは・・・
-　（　　＿__） ﾉﾍ　　　.. |&gt;
-　 乂＿__)_ノ　　しーＪ</pre>
-        <div class="h2 pb-3">
-          <span id="time" class="d-none"></span>
-          <span id="score" class="h1">0</span>
-          <ruby>秒<rp>(</rp><rt>びょう</rt><rp>)</rp></ruby>！
-        </div>
-        <a id="twitter" target="_blank" href="https://twitter.com/intent/tweet?text=タイプ100マス計算で遊んだよ!&url=https%3a%2f%2fmarmooo.github.com/type-100masu%2f&hashtags=タイプ100マス計算" class="btn btn-primary btn-lg m-1" role="button">Twitter でつぶやく</a>
-        <button id="restartButton" type="button" class="btn btn-primary btn-lg m-1">リスタート</button>
-      </div>
-      <div id="infoPanel" class="d-flex flex-wrap justify-content-center">
+      <div id="infoPanel" class="d-flex flex-wrap justify-content-center notranslate">
           <div id="masu">
             <table id="table" class="table table-striped table-bordered text-center align-middle">
               <tbody>
@@ -181,6 +147,43 @@
             <button id="be" class="btn btn-secondary calc">&gt;</button>
           </div>
         </div>
+      </div>
+      <div id="countPanel" class="text-center d-none notranslate">
+        <div id="countdown">
+          <div id="counter">3</div>
+          <pre class="aa">
+　 　 　 　 　 　 ,ｲ
+　　　　　　 　 / |
+　 　 　 ,r‐､λノ　 ﾞi､_,､ﾉゝ
+　　　　ﾞl　　 　 　　 　 　 ﾞ､_　　　パワー
+　　　 .j´　.　彡⌒ミ　　　（.　　　充電中...
+　　　 {　 　(´・ω・｀)　　 /
+　　　　 ).　 c/　　 ,つ 　 ,l~
+　　　 ´y　　｛ ,、 ｛　 　 &lt;
+　　　　 ゝ 　 lﾉ ヽ,)　　 ,
+          </pre>
+        </div>
+      </div>
+      <div id="scorePanel" class="text-center pb-3 d-none">
+        <h3 class="pt-3">スコア</h3>
+        <div class="d-flex justify-content-center">
+          <div class="notranslate">
+            <pre class="aa">　　　　　γ⌒ヽ
+　　　　__/　　/
+　γ￣＿_） （　 Λ,,Λ
+　（ 　 ＿__）　）(｀・ω・´)
+　（　　＿__） ﾉﾍ　　　.. |&gt;
+　 乂＿__)_ノ　　しーＪ</pre>
+          </div>
+          <div>クリアタイムは・・・</div>
+        </div>
+        <div class="h2 pb-3 notranslate">
+          <span id="time" class="d-none"></span>
+          <span id="score" class="h1">0</span>
+          <span>sec!</span>
+        </div>
+        <a id="twitter" target="_blank" href="https://twitter.com/intent/tweet?text=タイプ100マス計算で遊んだよ!&url=https%3a%2f%2fmarmooo.github.com/type-100masu%2f&hashtags=タイプ100マス計算" class="btn btn-primary btn-lg m-1" role="button">Twitter でつぶやく</a>
+        <button id="restartButton" type="button" class="btn btn-primary btn-lg m-1">リスタート</button>
       </div>
       <div class="pt-md-5 d-md-block d-none text-center">
         <ruby>他<rp>(</rp><rt>ほか</rt><rp>)</rp></ruby>にもいろいろなゲームがあるよ！
