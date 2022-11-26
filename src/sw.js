@@ -1,4 +1,4 @@
-var CACHE_NAME = "2022-10-08 11:03";
+var CACHE_NAME = "2022-11-26 12:58";
 var urlsToCache = [
   "/type-100masu/",
   "/type-100masu/index.js",
@@ -7,7 +7,7 @@ var urlsToCache = [
   "/type-100masu/mp3/correct3.mp3",
   "/type-100masu/favicon/favicon.svg",
   "https://marmooo.github.io/fonts/textar-light.woff2",
-  "https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css",
+  "https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css",
 ];
 
 self.addEventListener("install", function (event) {
