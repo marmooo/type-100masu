@@ -122,7 +122,7 @@ function countdown() {
 }
 
 function initTableFontSize() {
-  const table = document.getElementById("table")
+  const table = document.getElementById("table");
   const width = table.offsetWidth;
   table.style.fontSize = width / 11 * 0.6 + "px";
 }
@@ -152,16 +152,14 @@ function initCalc() {
     }
   };
   document.getElementById("bc").onclick = () => {
-    const replyObj = document.getElementById("table").querySelector(
-      ".table-danger",
-    );
+    const replyObj = document.getElementById("table")
+      .querySelector(".table-danger");
     replyObj.textContent = "";
   };
   for (let i = 0; i < 10; i++) {
     document.getElementById("b" + i).onclick = (event) => {
-      const replyObj = document.getElementById("table").querySelector(
-        ".table-danger",
-      );
+      const replyObj = document.getElementById("table")
+        .querySelector(".table-danger");
       let reply = replyObj.textContent;
       reply += event.target.getAttribute("id").slice(-1);
       if (reply.length > 2) {
