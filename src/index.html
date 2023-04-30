@@ -104,6 +104,13 @@
       <noscript>
         <div class="alert alert-warning">JavaScript を ON にしてください</div>
       </noscript>
+      <div id="noTTS" class="alert alert-warning d-none">
+        <p>お使いのブラウザは音声読み上げに対応していません。
+        Firefox for Linux は発話モジュールをインストールしてください。例:
+        </p>
+        <pre><code>sudo apt install speech-dispatcher
+sudo apt install festival speech-dispatcher-festival</code></pre>
+      </div>
       <div id="infoPanel" class="d-flex flex-wrap justify-content-center notranslate">
         <div id="masu">
           <table id="table" class="table table-striped table-bordered text-center align-middle">
@@ -143,7 +150,7 @@
           <div id="br" class="text-center">
             <button id="b0" class="btn btn-secondary calc" type="button">0</button>
             <button id="bc" class="btn btn-secondary calc" type="button">C</button>
-            <button id="be" class="btn btn-secondary calc" type="button">&gt;</button>
+            <button id="be" class="btn btn-secondary calc" type="button">?</button>
           </div>
         </div>
       </div>

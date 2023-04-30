@@ -1,8 +1,7 @@
-var CACHE_NAME = "2023-02-11 16:40";
+var CACHE_NAME = "2023-04-30 11:30";
 var urlsToCache = [
   "/type-100masu/",
   "/type-100masu/index.js",
-  "/type-100masu/mp3/incorrect1.mp3",
   "/type-100masu/mp3/end.mp3",
   "/type-100masu/mp3/correct3.mp3",
   "/type-100masu/favicon/favicon.svg",

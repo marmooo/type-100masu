@@ -5,7 +5,8 @@ const audioContext = new AudioContext();
 const audioBufferCache = {};
 loadAudio("end", "mp3/end.mp3");
 loadAudio("correct", "mp3/correct3.mp3");
-loadAudio("incorrect", "mp3/incorrect1.mp3"),
+let japaneseVoices = [];
+loadVoices();
 loadConfig();
 
 function loadConfig() {
@@ -22,6 +23,39 @@ function toggleDarkMode() {
     localStorage.setItem("darkMode", 1);
     document.documentElement.dataset.theme = "dark";
   }
+}
+
+function loadVoices() {
+  // https://stackoverflow.com/questions/21513706/
+  const allVoicesObtained = new Promise(function (resolve) {
+    let voices = speechSynthesis.getVoices();
+    if (voices.length !== 0) {
+      resolve(voices);
+    } else {
+      let supported = false;
+      speechSynthesis.addEventListener("voiceschanged", () => {
+        supported = true;
+        voices = speechSynthesis.getVoices();
+        resolve(voices);
+      });
+      setTimeout(() => {
+        if (!supported) {
+          document.getElementById("noTTS").classList.remove("d-none");
+        }
+      }, 1000);
+    }
+  });
+  allVoicesObtained.then((voices) => {
+    japaneseVoices = voices.filter((voice) => voice.lang == "ja-JP");
+  });
+}
+
+function speak(text) {
+  speechSynthesis.cancel();
+  const msg = new SpeechSynthesisUtterance(text);
+  msg.voice = japaneseVoices[Math.floor(Math.random() * japaneseVoices.length)];
+  msg.lang = "ja-JP";
+  speechSynthesis.speak(msg);
 }
 
 async function playAudio(name, volume) {
@@ -112,34 +146,18 @@ function initTableFontSize() {
 }
 
 function initCalc() {
-  const scoreObj = document.getElementById("score");
   document.getElementById("be").onclick = () => {
-    const replyObj = document.getElementById("table").querySelector(
-      ".table-danger",
-    );
-    const reply = replyObj.textContent;
+    const replyObj = document.getElementById("table")
+      .querySelector(".table-danger");
     const answer = replyObj.dataset.answer;
-    if (answer == reply) {
-      playAudio("correct");
-      replyObj.textContent = "";
-      const score = parseInt(scoreObj.textContent) + 1;
-      scoreObj.textContent = score;
-      moveCursorNext(replyObj);
-      if (score == 100) {
-        clearInterval(gameTimer);
-        infoPanel.classList.add("d-none");
-        scorePanel.classList.remove("d-none");
-        scoreObj.textContent = (Date.now() - startTime) / 1000;
-      }
-    } else {
-      playAudio("incorrect");
-    }
+    speak(answer);
   };
   document.getElementById("bc").onclick = () => {
     const replyObj = document.getElementById("table")
       .querySelector(".table-danger");
     replyObj.textContent = "";
   };
+  const scoreObj = document.getElementById("score");
   for (let i = 0; i < 10; i++) {
     document.getElementById("b" + i).onclick = (event) => {
       const replyObj = document.getElementById("table")
