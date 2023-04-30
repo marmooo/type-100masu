@@ -148,31 +148,31 @@ function initTableFontSize() {
 
 function initCalc() {
   document.getElementById("be").onclick = () => {
-    const replyObj = document.getElementById("table")
+    const cursor = document.getElementById("table")
       .querySelector(".table-danger");
-    const answer = replyObj.dataset.answer;
+    const answer = cursor.dataset.answer;
     speak(answer);
   };
   document.getElementById("bc").onclick = () => {
-    const replyObj = document.getElementById("table")
+    const cursor = document.getElementById("table")
       .querySelector(".table-danger");
-    replyObj.textContent = "";
+    cursor.textContent = "";
   };
   for (let i = 0; i < 10; i++) {
     document.getElementById("b" + i).onclick = (event) => {
-      const replyObj = document.getElementById("table")
+      const cursor = document.getElementById("table")
         .querySelector(".table-danger");
-      let reply = replyObj.textContent;
+      let reply = cursor.textContent;
       reply += event.target.getAttribute("id").slice(-1);
       if (reply.length > 2) {
         reply = reply.slice(1, 3);
       }
-      replyObj.textContent = reply;
-      const answer = replyObj.dataset.answer;
+      cursor.textContent = reply;
+      const answer = cursor.dataset.answer;
       if (answer == reply) {
         playAudio("correct");
         correctCount += 1;
-        moveCursorNext(replyObj);
+        moveCursorNext(cursor);
         if (correctCount == 100) {
           playAudio("end");
           clearInterval(gameTimer);
