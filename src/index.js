@@ -7,6 +7,7 @@ loadAudio("end", "mp3/end.mp3");
 loadAudio("correct", "mp3/correct3.mp3");
 let japaneseVoices = [];
 loadVoices();
+let correctCount = 0;
 loadConfig();
 
 function loadConfig() {
@@ -106,6 +107,7 @@ function getNumRange(grade) {
 let startTime;
 let gameTimer;
 function startGameTimer() {
+  correctCount = 0;
   clearInterval(gameTimer);
   const timeNode = document.getElementById("time");
   startTime = Date.now();
@@ -133,7 +135,6 @@ function countdown() {
       clearTimeout(countdownTimer);
       countPanel.classList.add("d-none");
       infoPanel.classList.remove("d-none");
-      document.getElementById("score").textContent = 0;
       startGameTimer();
     }
   }, 1000);
@@ -157,7 +158,6 @@ function initCalc() {
       .querySelector(".table-danger");
     replyObj.textContent = "";
   };
-  const scoreObj = document.getElementById("score");
   for (let i = 0; i < 10; i++) {
     document.getElementById("b" + i).onclick = (event) => {
       const replyObj = document.getElementById("table")
@@ -171,17 +171,15 @@ function initCalc() {
       const answer = replyObj.dataset.answer;
       if (answer == reply) {
         playAudio("correct");
-        const score = parseInt(scoreObj.textContent) + 1;
-        scoreObj.textContent = score;
+        correctCount += 1;
         moveCursorNext(replyObj);
-        if (score == 100) {
+        if (correctCount == 100) {
           playAudio("end");
           clearInterval(gameTimer);
           infoPanel.classList.add("d-none");
           scorePanel.classList.remove("d-none");
-          scoreObj.textContent = (Date.now() - startTime) / 1000;
-        } else if (score == 1) {
-          startGameTimer();
+          const time = (Date.now() - startTime) / 1000;
+          document.getElementById("score").textContent = time;
         }
       }
     };
