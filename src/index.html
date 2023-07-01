@@ -68,8 +68,9 @@
       }
       #table { height:100%; table-layout:fixed; }
       #table td, #table th { padding:0; }
-      html[data-theme="dark"] { filter: invert(1) hue-rotate(180deg); }
-      @-moz-document url-prefix() { html[data-theme="dark"] { background-color:black; } }
+      html[data-bs-theme="dark"] .navbar-brand > img { filter: invert(1) hue-rotate(180deg); }
+      html[data-bs-theme="dark"] .tile img { filter: invert(1) hue-rotate(180deg); }
+      html[data-bs-theme="dark"] .table-danger { filter: invert(0.9) hue-rotate(180deg); }
     </style>
   </head>
   <body>
@@ -156,7 +157,7 @@ sudo apt install festival speech-dispatcher-festival</code></pre>
       </div>
       <div id="countPanel" class="text-center d-none notranslate">
         <div id="countdown">
-          <div id="counter">3</div>
+          <div id="counter" class="text-dark"></div>
           <pre class="aa">
 　 　 　 　 　 　 ,ｲ
 　　　　　　 　 / |
