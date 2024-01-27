@@ -170,7 +170,7 @@ function initCalc() {
       cursor.textContent = reply;
       const answer = cursor.dataset.answer;
       if (answer == reply) {
-        playAudio("correct");
+        playAudio("correct", 0.3);
         correctCount += 1;
         moveCursorNext(cursor);
         if (correctCount == 100) {
