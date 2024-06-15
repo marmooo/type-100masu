@@ -229,15 +229,16 @@ function shuffle(array) {
   return array;
 }
 
+function initCursor() {
+  const table = document.getElementById("table");
+  table.querySelector("td.table-danger").classList.remove("table-danger");
+  table.querySelector("td").classList.add("table-danger");
+}
+
 function initTable() {
   initTableHeader();
   initTableAnswers();
-  [...document.getElementById("table").querySelectorAll("td.table-danger")]
-    .forEach((td) => {
-      td.className = "";
-    });
-  document.getElementById("table").getElementsByTagName("tr")[1].children[1]
-    .className = "table-danger";
+  initCursor();
 }
 
 function initTableAnswers() {
