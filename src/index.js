@@ -92,15 +92,16 @@ function unlockAudio() {
 function getNumRange(grade) {
   switch (grade) {
     case 1:
-      return [[9, 1], [[10, 5], [5, 1]], [9, 1], [[9, 1], [5, 1]]];
+    case 6:
+      return [[9, 1], [[10, 5], [5, 1]], [9, 0], [[9, 1], [5, 1]]];
     case 2:
-      return [[14, 2], [[20, 11], [10, 1]], [9, 1], [[19, 1], [5, 1]]];
+      return [[14, 2], [[20, 11], [10, 1]], [9, 0], [[19, 1], [5, 1]]];
     case 3:
-      return [[19, 4], [[26, 16], [15, 6]], [9, 1], [[99, 10], [9, 1]]];
+      return [[19, 4], [[26, 16], [15, 6]], [9, 0], [[99, 10], [9, 1]]];
     case 4:
-      return [[24, 8], [[99, 50], [50, 11]], [9, 1], [[99, 20], [19, 11]]];
-    default:
-      return [[49, 11], [[99, 50], [50, 11]], [9, 1], [[99, 20], [19, 11]]];
+      return [[24, 8], [[99, 50], [50, 11]], [9, 0], [[99, 20], [19, 11]]];
+    case 5:
+      return [[49, 11], [[99, 50], [50, 11]], [9, 0], [[99, 20], [19, 11]]];
   }
 }
 
@@ -146,6 +147,40 @@ function initTableFontSize() {
   table.style.fontSize = width / 11 * 0.6 + "px";
 }
 
+function limitReplyText(reply) {
+  const grade = document.getElementById("gradeOption").selectedIndex + 1;
+  if (grade >= 6) {
+    if (reply.startsWith("-")) {
+      if (reply.length > 3) {
+        return "-" + reply.slice(2, 4);
+      }
+    } else if (reply.length > 2) {
+      return reply.slice(1, 3);
+    }
+  } else {
+    if (reply.length > 2) {
+      return reply.slice(1, 3);
+    }
+  }
+  return reply;
+}
+
+function checkAnswer(answer, reply, cursor) {
+  if (answer == reply) {
+    playAudio("correct", 0.3);
+    correctCount += 1;
+    moveCursorNext(cursor);
+    if (correctCount == 100) {
+      playAudio("end");
+      clearInterval(gameTimer);
+      infoPanel.classList.add("d-none");
+      scorePanel.classList.remove("d-none");
+      const time = (Date.now() - startTime) / 1000;
+      document.getElementById("score").textContent = time;
+    }
+  }
+}
+
 function initCalc() {
   document.getElementById("be").onclick = () => {
     const cursor = document.getElementById("table")
@@ -158,30 +193,30 @@ function initCalc() {
       .querySelector(".table-danger");
     cursor.textContent = "";
   };
+  document.getElementById("bs").onclick = () => {
+    const cursor = document.getElementById("table")
+      .querySelector(".table-danger");
+    let reply = cursor.textContent;
+    if (cursor.textContent.startsWith("-")) {
+      reply = cursor.textContent.slice(1);
+    } else {
+      reply = "-" + cursor.textContent.slice(0, 2);
+    }
+    reply = limitReplyText(reply);
+    cursor.textContent = reply;
+    const answer = cursor.dataset.answer;
+    checkAnswer(answer, reply, cursor);
+  };
   for (let i = 0; i < 10; i++) {
     document.getElementById("b" + i).onclick = (event) => {
       const cursor = document.getElementById("table")
         .querySelector(".table-danger");
       let reply = cursor.textContent;
       reply += event.target.getAttribute("id").slice(-1);
-      if (reply.length > 2) {
-        reply = reply.slice(1, 3);
-      }
+      reply = limitReplyText(reply);
       cursor.textContent = reply;
       const answer = cursor.dataset.answer;
-      if (answer == reply) {
-        playAudio("correct", 0.3);
-        correctCount += 1;
-        moveCursorNext(cursor);
-        if (correctCount == 100) {
-          playAudio("end");
-          clearInterval(gameTimer);
-          infoPanel.classList.add("d-none");
-          scorePanel.classList.remove("d-none");
-          const time = (Date.now() - startTime) / 1000;
-          document.getElementById("score").textContent = time;
-        }
-      }
+      checkAnswer(answer, reply, cursor);
     };
   }
 }
@@ -230,34 +265,46 @@ function initTableAnswers() {
   }
 }
 
+function randomSigns(length) {
+  const halfLength = length / 2;
+  const arr = new Array(length);
+  for (let i = 0; i < length; i++) {
+    const sign = (i < halfLength) ? 1 : -1;
+    arr[i] = sign;
+  }
+  return shuffle(arr);
+}
+
+function initTableHeaderBase(to, from, ths, grade) {
+  const n = ths.length;
+  let range = Array.from(new Array(to - from + 1)).map((_v, i) => i + from);
+  while (range.length < n) {
+    range = range.concat(range);
+  }
+  shuffle(range);
+  const signs = randomSigns(n);
+  const arr = range.slice(0, n);
+  if (grade >= 6) arr.forEach((v, i) => arr[i] = v * signs[i]);
+  for (let i = 0; i < n; i++) {
+    ths[i].textContent = arr[i];
+  }
+}
+
 function initTableHeader() {
   const table = document.getElementById("table");
-  const ths = table.getElementsByTagName("th");
+  const ths = [...table.getElementsByTagName("th")];
   const grade = document.getElementById("gradeOption").selectedIndex + 1;
   const course = document.getElementById("courseOption").selectedIndex;
   if (course == 1 || course == 3) {
-    let [to, from] = getNumRange(grade)[course][0];
-    let range = Array.from(new Array(to - from + 1)).map((_v, i) => i + from);
-    let arr = shuffle(range.slice());
-    arr = arr.concat(shuffle(range.slice()));
-    for (let i = 1; i <= 10; i++) {
-      ths[i].textContent = arr[i];
-    }
-    [to, from] = getNumRange(grade)[course][1];
-    range = Array.from(new Array(to - from + 1)).map((_v, i) => i + from);
-    arr = shuffle(range.slice());
-    arr = arr.concat(shuffle(range.slice()));
-    for (let i = 11; i <= 20; i++) {
-      ths[i].textContent = arr[i - 11];
-    }
+    const range = getNumRange(grade)[course];
+    const [upperTo, upperFrom] = range[0];
+    const [leftTo, leftFrom] = range[1];
+    initTableHeaderBase(upperTo, upperFrom, ths.slice(1, 11), grade);
+    initTableHeaderBase(leftTo, leftFrom, ths.slice(11), grade);
   } else {
     const [to, from] = getNumRange(grade)[course];
-    const range = Array.from(new Array(to - from + 1)).map((_v, i) => i + from);
-    let arr = shuffle(range);
-    arr = arr.concat(shuffle(range.slice())).concat(shuffle(range.slice()));
-    for (let i = 1; i <= 20; i++) {
-      ths[i].textContent = arr[i];
-    }
+    initTableHeaderBase(to, from, ths.slice(1, 11), grade);
+    initTableHeaderBase(to, from, ths.slice(11), grade);
   }
 }
 
@@ -281,6 +328,16 @@ function moveCursorNext(obj) {
   newObj.className = "table-danger";
 }
 
+function changeCalcMode(event) {
+  if (event.target.selectedIndex >= 5) {
+    document.getElementById("be").classList.add("d-none");
+    document.getElementById("bs").classList.remove("d-none");
+  } else {
+    document.getElementById("be").classList.remove("d-none");
+    document.getElementById("bs").classList.add("d-none");
+  }
+}
+
 initTable();
 initTableFontSize();
 initCalc();
@@ -288,14 +345,17 @@ initCalc();
 document.getElementById("toggleDarkMode").onclick = toggleDarkMode;
 document.getElementById("startButton").onclick = countdown;
 document.getElementById("restartButton").onclick = countdown;
-document.getElementById("gradeOption").onchange = initTable;
-globalThis.onresize = initTableFontSize;
+document.getElementById("gradeOption").onchange = (event) => {
+  changeCalcMode(event);
+  initTable();
+};
 document.getElementById("courseOption").onchange = (event) => {
   const obj = event.target;
   const text = obj.options[obj.selectedIndex].textContent;
-  document.getElementById("courseText").innerHTML = text;
+  document.getElementById("courseText").textContent = text;
   initTable();
 };
+globalThis.onresize = initTableFontSize;
 document.addEventListener("click", unlockAudio, {
   once: true,
   useCapture: true,
