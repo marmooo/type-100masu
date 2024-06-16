@@ -169,6 +169,7 @@ function checkAnswer(answer, reply, cursor) {
   if (answer == reply) {
     playAudio("correct", 0.3);
     correctCount += 1;
+    document.getElementById("bs").textContent = "−";
     moveCursorNext(cursor);
     if (correctCount == 100) {
       playAudio("end");
@@ -192,14 +193,17 @@ function initCalc() {
     const cursor = document.getElementById("table")
       .querySelector(".table-danger");
     cursor.textContent = "";
+    document.getElementById("bs").textContent = "−";
   };
-  document.getElementById("bs").onclick = () => {
+  document.getElementById("bs").onclick = (event) => {
     const cursor = document.getElementById("table")
       .querySelector(".table-danger");
     let reply = cursor.textContent;
     if (cursor.textContent.startsWith("-")) {
+      event.target.textContent = "−";
       reply = cursor.textContent.slice(1);
     } else {
+      event.target.textContent = "＋";
       reply = "-" + cursor.textContent.slice(0, 2);
     }
     reply = limitReplyText(reply);
