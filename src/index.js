@@ -141,7 +141,7 @@ function startGameTimer() {
 let countdownTimer;
 function countdown() {
   initTable();
-  clearTimeout(countdownTimer);
+  clearInterval(countdownTimer);
   countPanel.classList.remove("d-none");
   infoPanel.classList.add("d-none");
   scorePanel.classList.add("d-none");
@@ -154,7 +154,7 @@ function countdown() {
       counter.style.backgroundColor = colors[t];
       counter.textContent = t;
     } else {
-      clearTimeout(countdownTimer);
+      clearInterval(countdownTimer);
       countPanel.classList.add("d-none");
       infoPanel.classList.remove("d-none");
       startGameTimer();
