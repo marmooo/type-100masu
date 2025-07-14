@@ -33,7 +33,6 @@
     <link rel="manifest" href="/type-100masu/favicon/site.webmanifest">
     <link class="drop-inline-css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     <style>
-      .tile { width:84px; padding-bottom:1rem; line-height:1.1rem; }
       @font-face {
         font-family: textar-light;
         src: url('https://marmooo.github.io/fonts/textar-light.woff2') format('woff2');
@@ -193,35 +192,165 @@ sudo apt install festival speech-dispatcher-festival</code></pre>
         <a id="twitter" target="_blank" href="https://twitter.com/intent/tweet?text=タイプ100マス計算で遊んだよ!&url=https://marmooo.github.com/type-100masu/&hashtags=タイプ100マス計算" class="btn btn-primary btn-lg m-1" role="button">Twitter でつぶやく</a>
         <button id="restartButton" class="btn btn-primary btn-lg m-1" type="button">リスタート</button>
       </div>
-      <div class="pt-md-5 d-md-block d-none text-center">
-        他にもいろいろなゲームがあるよ！
-        <div class="text-center d-flex flex-wrap justify-content-center pt-3">
-          <div class="tile">
-            <a href="https://marmooo.github.io/kanji-meiro/">
-              <img class="favicon" alt="" src="https://marmooo.github.io/kanji-siritori/favicon/favicon.svg" width="64" height="64" loading="lazy">
-              <br>
-              <small>漢字しりとり</small>
-            </a>
-          </div>
-          <div class="tile">
-            <a href="https://marmooo.github.io/type-de-anzan/">
-              <img class="favicon" alt="" src="https://marmooo.github.io/type-de-anzan/favicon/favicon.svg" width="64" height="64" loading="lazy">
-              <br>
-              <small>タイプde暗算</small>
-            </a>
-          </div>
-          <div class="tile">
-            <a href="https://marmooo.github.io/tegaki-100masu/">
-              <img class="favicon" alt="" src="https://marmooo.github.io/tegaki-100masu/favicon/favicon.svg" width="64" height="64" loading="lazy">
-              <br>
-              <small>手書き100マス計算</small>
-            </a>
-          </div>
+    </main>
+    <footer class="pt-5 alert text-center">
+      <div class="d-flex justify-content-center text-start flex-wrap">
+        <div class="table-responsive text-nowrap">
+          <h6>その他の算数アプリ</h6>
+          <table class="table table-sm table-striped w-auto">
+            <tbody>
+              <tr>
+                <td>
+                  <img class="favicon" alt="" src="https://marmooo.github.io/tegaki-de-anzan/favicon/favicon.svg" width="16" height="16" loading="lazy">
+                  <a href="https://marmooo.github.io/tegaki-de-anzan/">手書きde暗算</a>
+                </td>
+                <td>四則演算の暗算を手書きでしよう。</td>
+              </tr>
+              <tr>
+                <td>
+                  <img class="favicon" alt="" src="https://marmooo.github.io/type-de-anzan/favicon/favicon.svg" width="16" height="16" loading="lazy">
+                  <a href="https://marmooo.github.io/type-de-anzan/">タイプde暗算</a>
+                </td>
+                <td>四則演算の暗算をタイプでしよう。</td>
+              </tr>
+              <tr>
+                <td>
+                  <img class="favicon" alt="" src="https://marmooo.github.io/tegaki-100masu/favicon/favicon.svg" width="16" height="16" loading="lazy">
+                  <a href="https://marmooo.github.io/tegaki-100masu/">手書き100マス計算</a>
+                </td>
+                <td>100マス計算を手書きでしよう。</td>
+              </tr>
+              <tr>
+                <td>
+                  <img class="favicon" alt="" src="https://marmooo.github.io/type-100masu/favicon/favicon.svg" width="16" height="16" loading="lazy">
+                  <a href="https://marmooo.github.io/type-100masu/">タイプ100マス計算</a>
+                </td>
+                <td>100マス計算をタイプでしよう。</td>
+              </tr>
+              <tr>
+                <td>
+                  <img class="favicon" alt="" src="https://marmooo.github.io/tegaki-50masu/favicon/favicon.svg" width="16" height="16" loading="lazy">
+                  <a href="https://marmooo.github.io/tegaki-50masu/">手書き50マス計算</a>
+                </td>
+                <td>50マス計算を手書きでしよう。</td>
+              </tr>
+              <tr>
+                <td>
+                  <img class="favicon" alt="" src="https://marmooo.github.io/type-50masu/favicon/favicon.svg" width="16" height="16" loading="lazy">
+                  <a href="https://marmooo.github.io/type-50masu/">タイプ50マス計算</a>
+                </td>
+                <td>50マス計算をタイプでしよう。</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-responsive text-nowrap">
+          <h6>特殊な算数アプリ</h6>
+          <table class="table table-sm table-striped w-auto">
+            <tbody>
+              <tr>
+                <td>
+                  <img class="favicon" alt="" src="https://marmooo.github.io/type-numbers/favicon/favicon.svg" width="16" height="16" loading="lazy">
+                  <a href="https://marmooo.github.io/type-numbers/">Type Numbers</a>
+                </td>
+                <td>発音された数字をタイプしよう。</td>
+              </tr>
+              <tr>
+                <td>
+                  <img class="favicon" alt="" src="https://marmooo.github.io/talk-numbers/favicon/favicon.svg" width="16" height="16" loading="lazy">
+                  <a href="https://marmooo.github.io/talk-numbers/">Talk Numbers</a>
+                </td>
+                <td>発音された数字を真似して発音しよう。</td>
+              </tr>
+              <tr>
+                <td>
+                  <img class="favicon" alt="" src="https://marmooo.github.io/calc-and-type/favicon/favicon.svg" width="16" height="16" loading="lazy">
+                  <a href="https://marmooo.github.io/calc-and-type/">Calc and Type</a>
+                </td>
+                <td>四則演算の英文を聞いてタイプしよう。</td>
+              </tr>
+              <tr>
+                <td>
+                  <img class="favicon" alt="" src="https://marmooo.github.io/calc-and-talk/favicon/favicon.svg" width="16" height="16" loading="lazy">
+                  <a href="https://marmooo.github.io/calc-and-talk/">Calc and Talk</a>
+                </td>
+                <td>四則演算の英文を聞いて発音しよう。</td>
+              </tr>
+              <tr>
+                <td>
+                  <img class="favicon" alt="" src="https://marmooo.github.io/kuku-typing/favicon/favicon.svg" width="16" height="16" loading="lazy">
+                  <a href="https://marmooo.github.io/kuku-typing/">九九タイピング</a>
+                </td>
+                <td>タイピングで九九を覚えよう。</td>
+              </tr>
+              <tr>
+                <td>
+                  <img class="favicon" alt="" src="https://marmooo.github.io/okusenman-typing/favicon/favicon.svg" width="16" height="16" loading="lazy">
+                  <a href="https://marmooo.github.io/okusenman-typing/">億千万タイピング</a>
+                </td>
+                <td>タイピングで大きな数を覚えよう。</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-responsive text-nowrap">
+          <h6>知育アプリ</h6>
+          <table class="table table-sm table-striped w-auto">
+            <tbody>
+              <tr>
+                <td>
+                  <img class="favicon" alt="" src="https://marmooo.github.io/number-icon/favicon/favicon.svg" width="16" height="16" loading="lazy">
+                  <a href="https://marmooo.github.io/number-icon/ja/">アイコン点つなぎ</a>
+                </td>
+                <td>アイコンで点つなぎ。</td>
+              </tr>
+              <tr>
+                <td>
+                  <img class="favicon" alt="" src="https://marmooo.github.io/number-kanji/favicon/favicon.svg" width="16" height="16" loading="lazy">
+                  <a href="https://marmooo.github.io/number-kanji/ja/">漢字点つなぎ</a>
+                </td>
+                <td>漢字で点つなぎ。</td>
+              </tr>
+              <tr>
+                <td>
+                  <img class="favicon" alt="" src="https://marmooo.github.io/number-emoji/favicon/favicon.svg" width="16" height="16" loading="lazy">
+                  <a href="https://marmooo.github.io/number-emoji/ja/">えもじ点つなぎ</a>
+                </td>
+                <td>えもじで点つなぎ。</td>
+              </tr>
+              <tr>
+                <td>
+                  <img class="favicon" alt="" src="https://marmooo.github.io/paint-emoji/favicon/favicon.svg" width="16" height="16" loading="lazy">
+                  <a href="https://marmooo.github.io/paint-emoji/ja/">ぬりえもじ</a>
+                </td>
+                <td>えもじの塗り絵。</td>
+              </tr>
+              <tr>
+                <td>
+                  <img class="favicon" alt="" src="https://marmooo.github.io/emoji-puzzle/favicon/favicon.svg" width="16" height="16" loading="lazy">
+                  <a href="https://marmooo.github.io/emoji-puzzle/ja/">えもじパズル</a>
+                </td>
+                <td>えもじのパズル。</td>
+              </tr>
+              <tr>
+                <td>
+                  <img class="favicon" alt="" src="https://marmooo.github.io/plot-icon/favicon/favicon.svg" width="16" height="16" loading="lazy">
+                  <a href="https://marmooo.github.io/plot-icon/ja/">アイコン点描写</a>
+                </td>
+                <td>アイコンで点描写。</td>
+              </tr>
+              <tr>
+                <td>
+                  <img class="favicon" alt="" src="https://marmooo.github.io/plot-kanji/favicon/favicon.svg" width="16" height="16" loading="lazy">
+                  <a href="https://marmooo.github.io/plot-kanji/ja/">漢字点描写</a>
+                </td>
+                <td>漢字で点描写。</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
-    </main>
-    <footer class="pt-4 alert text-center">
-      <div>
+      <div class="pt-3">
         <a class="px-1" href="/">Home</a>
         <a class="px-1" href="/terms/">Terms</a>
         <a class="px-1" href="https://github.com/marmooo/type-100masu">Contact</a>
