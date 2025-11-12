@@ -1,6 +1,9 @@
+import { createWorker } from "https://cdn.jsdelivr.net/npm/emoji-particle@0.0.4/+esm";
+
 const countPanel = document.getElementById("countPanel");
 const infoPanel = document.getElementById("infoPanel");
 const scorePanel = document.getElementById("scorePanel");
+const emojiParticle = initEmojiParticle();
 let correctCount = 0;
 let audioContext;
 const audioBufferCache = {};
@@ -109,6 +112,30 @@ function playAudio(name, volume) {
   sourceNode.start();
 }
 
+function initEmojiParticle() {
+  const canvas = document.createElement("canvas");
+  Object.assign(canvas.style, {
+    position: "fixed",
+    pointerEvents: "none",
+    top: "0px",
+    left: "0px",
+  });
+  canvas.width = document.documentElement.clientWidth;
+  canvas.height = document.documentElement.clientHeight;
+  document.body.prepend(canvas);
+
+  const offscreen = canvas.transferControlToOffscreen();
+  const worker = createWorker();
+  worker.postMessage({ type: "init", canvas: offscreen }, [offscreen]);
+
+  globalThis.addEventListener("resize", () => {
+    const width = document.documentElement.clientWidth;
+    const height = document.documentElement.clientHeight;
+    worker.postMessage({ type: "resize", width, height });
+  });
+  return { canvas, offscreen, worker };
+}
+
 // +-*/のテストデータ生成範囲を返却
 function getNumRange(grade) {
   switch (grade) {
@@ -190,6 +217,18 @@ function checkAnswer(answer, reply, cursor) {
   if (answer == reply) {
     playAudio("correct", 0.3);
     correctCount += 1;
+    if (correctCount % 10 === 0) {
+      for (let i = 0; i < Math.ceil(correctCount / 10); i++) {
+        emojiParticle.worker.postMessage({
+          type: "spawn",
+          options: {
+            particleType: "popcorn",
+            originX: Math.random() * emojiParticle.canvas.width,
+            originY: Math.random() * emojiParticle.canvas.height,
+          },
+        });
+      }
+    }
     document.getElementById("bs").textContent = "−";
     moveCursorNext(cursor);
     if (correctCount == 100) {
